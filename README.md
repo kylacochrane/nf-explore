@@ -1,4 +1,4 @@
-# nf-journey
+# nf-explore
 Learning how to use nextflow using paired-end RNA-seqeuncing data.
 
 
