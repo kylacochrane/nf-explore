@@ -1,0 +1,33 @@
+nextflow_process {
+
+    name "Test Process rnaseq_mapping_star"
+    script "modules/rnaseq_mapping_star.nf"
+    process "rnaseq_mapping_star"
+
+    test("Should align fastq files to genome using STAR") {
+
+        when {                
+            process {
+                """
+                input[0] = file("${projectDir}/tests/data/genome.fa")
+                input[1] = files("${projectDir}/tests/data/genomeDir")
+		        input[2] = Channel.fromFilePairs("${projectDir}/tests/data/ENCSR000COQ1_{1,2}.fastq.gz")
+                """
+            }
+        }
+
+        then {
+            assert process.success
+
+            def outputFile = file(".nf-test/tests/a907bb24a360af89ba27b15cdf9f165b/results/ENCSR000COQ/Aligned.sortedByCoord.out.bam")          
+            
+            if (outputFile.exists()) {
+                print "BAM file was created successfully"
+            } else {
+                print "BAM file was not created "
+            }
+        }
+
+    }
+
+}

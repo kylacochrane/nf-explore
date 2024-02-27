@@ -1,0 +1,22 @@
+nextflow_pipeline {
+
+    name "Test Workflow main.nf"
+    script "main.nf"
+
+    test("Should execute complete STAR pipeline using relative paths") {
+
+        when {
+            params {
+		genome	= "${projectDir}/tests/data/genome.fa"
+		reads	= "${projectDir}/tests/data/ENCSR000COQ1_{1,2}.fastq.gz" 
+                results	= "results"
+            }
+        }
+
+        then {
+            assert workflow.success
+        }
+
+    }
+
+}

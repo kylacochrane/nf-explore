@@ -1,0 +1,24 @@
+nextflow_process {
+
+    name "Test Process prepare_star_genome_index"
+    script "modules/prepare_star_genome_index.nf"
+    process "prepare_star_genome_index"
+
+    test("Should create channel index files") {
+
+        when {
+            process {
+                """
+                input[0] = file("${projectDir}/tests/data/genome.fa")
+                """
+            }
+        }
+
+        then {
+	    //check if test case succeeded
+            assert process.success
+        //analyze trace files
+        assert process.trace.tasks().size() == 1
+        }
+    }
+}

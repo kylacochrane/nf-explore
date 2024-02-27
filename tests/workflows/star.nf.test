@@ -1,0 +1,27 @@
+nextflow_workflow {
+
+    name "Test Workflow STAR"
+    script "workflows/star.nf"
+    workflow "STAR"
+
+    test("Should run without failures") {
+
+        when {
+            params {
+                outdir = "results"
+            }
+            workflow {
+                """
+                // define inputs of the workflow here
+                input[0] = file("$projectDir/tests/data/genome.fa")
+                input[1] = Channel.fromFilePairs("$projectDir/tests/data/ENCSR000COQ1_{1,2}.fastq.gz")
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+        }
+
+    }
+}
