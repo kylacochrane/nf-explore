@@ -27,7 +27,7 @@ nextflow_process {
 
             //Iterate through each test directory
             testResultsDir.eachDir { testDir ->
-                def outputFile = new File(testDir, "results/ENCSR000COQ/Aligned.sortedByCoord.out.bam")          
+                def outputFile = new File(testDir, "results/ENCSR000COQ1/Aligned.sortedByCoord.out.bam")          
             
                 if (outputFile.exists()) {
                    outputFileFound = true
