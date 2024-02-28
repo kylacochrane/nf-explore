@@ -17,7 +17,7 @@ process rnaseq_mapping_star {
           path("Aligned.sortedByCoord.out.bam.bai")
 
     script:
-    sampleId = replicateId.replaceAll(/[12]$/,'') 
+    sampleId = replicateId.tokenize('_').first() 
     """
     STAR --genomeDir ${genomeDir} \
          --readFilesIn ${reads} \
