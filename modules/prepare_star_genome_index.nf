@@ -14,8 +14,6 @@ process prepare_star_genome_index {
 
     script: 
     """
-    mkdir -p genome_dir
-
     STAR --runMode genomeGenerate \
          --genomeDir genomeDir \
          --genomeFastaFiles ${genome} \
