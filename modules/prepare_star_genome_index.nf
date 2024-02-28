@@ -10,14 +10,14 @@ process prepare_star_genome_index {
     path genome
 
     output:
-    path 'genome_dir' 
+    path 'genomeDir' 
 
     script: 
     """
     mkdir -p genome_dir
 
     STAR --runMode genomeGenerate \
-         --genomeDir genome_dir \
+         --genomeDir genomeDir \
          --genomeFastaFiles ${genome} \
          --runThreadN ${task.cpus}
     """
