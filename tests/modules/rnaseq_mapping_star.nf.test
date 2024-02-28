@@ -19,12 +19,26 @@ nextflow_process {
         then {
             assert process.success
 
-            def outputFile = file(".nf-test/tests/a907bb24a360af89ba27b15cdf9f165b/results/ENCSR000COQ/Aligned.sortedByCoord.out.bam")          
+            // Get the directory containing test results
+            def testResultsDir = file('.nf-test/tests')
+
+            //Flag variable to track if bam output file is found
+            def outputFileFound = false
+
+            //Iterate through each test directory
+            testResultsDir.eachDir { testDir ->
+                def outputFile = new File(testDir, "results/ENCSR000COQ/Aligned.sortedByCoord.out.bam")          
             
-            if (outputFile.exists()) {
+                if (outputFile.exists()) {
+                   outputFileFound = true
+                }
+            }
+
+            //Print success message if output file is found in any working  test directory
+            if (outputFileFound) {
                 print "BAM file was created successfully"
             } else {
-                print "BAM file was not created "
+                print "BAM file was not created"
             }
         }
 
