@@ -11,7 +11,7 @@ Learning how to use nextflow using paired-end RNA-seqeuncing data.
 
 #This will run a single sample (ENCSR000COQ1) through the simplified pipeline (creates a STAR index and maps the fastq paired-end reads to the human genome)
 
-If you wanted to run the full variant calling pipeline `full_main.nf` then run:
+If you wanted to run the full variant calling pipeline [`full_main.nf`] then run:
 
 `nextflow run full_main.nf -profile docker/singularity/apptainer`
 
