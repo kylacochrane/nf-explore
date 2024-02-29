@@ -4,13 +4,14 @@ Learning how to use nextflow using paired-end RNA-seqeuncing data.
 
 # Basic User Guide:
 
-After cloning the repo you should be able to simply run:
+`nextflow run kylacochrane/nf-explore -profile docker/singularity/apptainer`
 
-`nextflow run main.nf -profile docker/singularity/apptainer`
+[ After cloning the repo:
+`nextflow run main.nf -profile docker/singularity/apptainer` ]
 
-#This will run a single sample (ENCSR000COQ) through the simplified pipeline (that only creates a STAR index genome and aligns the fastq paired end data to the human genome)
+#This will run a single sample (ENCSR000COQ1) through the simplified pipeline (creates a STAR index and maps the fastq paired-end reads to the human genome)
 
-If you wanted to run the full variant calling pipeline then run:
+If you wanted to run the full variant calling pipeline `full_main.nf` then run:
 
 `nextflow run full_main.nf -profile docker/singularity/apptainer`
 
@@ -19,7 +20,7 @@ If you wanted to run the full variant calling pipeline then run:
 #You can run your own samples using the `--reads` parameter 
 - For ease: I have added a data folder that contains additional samples that you can use:
 
-`nextflow run main.nf -profile singularity --reads "data/reads/E*_{1,2}.fastq.gz"`
+`nextflow run main.nf -profile singularity --reads "data/reads/*_{1,2}.fastq.gz"`
 
 # To run the tests:
 
@@ -29,7 +30,6 @@ If you wanted to run the full variant calling pipeline then run:
 
 - Add test configuration to -profile options in the nextflow.config file (or rather include test.config file)
 	- Ensure that resources are limitied so it can run on GitHub Actions
-	- Set up GitHub Actions
 - Use nf-validation and samplesheet.csv as input file
 - Add a final test that uses the snapshot tool
 
