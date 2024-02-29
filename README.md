@@ -17,8 +17,8 @@ If you wanted to run the full variant calling pipeline [`full_main.nf`] then run
 
 #This pipeline does not have tests or nf-validation of parameters set up
 
-#You can run your own samples using the `--reads` parameter 
-- For ease: I have added a data folder that contains additional samples that you can use:
+You can run your own paired-end data using the `--reads` parameter 
+- Additional paired-end reads can by found in `data/`:
 
 `nextflow run main.nf -profile singularity --reads "data/reads/*_{1,2}.fastq.gz"`
 
