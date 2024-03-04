@@ -29,7 +29,7 @@ nextflow run main.nf -profile apptainer
 Output files should be in `results/`
 
 # Parameters
-
+## Mandatory
 **Input**: provided to nf-explore in the form of a samplesheet (passed as `--input samplesheet.csv`). This samplesheet is a CSV-formated file, which may be provided as a URL (ex: a file path or web address), and has the following format:
 
 | sample | fastq_1 | fastq_2 |
@@ -41,6 +41,10 @@ The columns are defined as follows:
 - `sample`: The unique sample identifier to associate with the reads
 -  `fastq_1`: A URI (ex: a file path or web address) to either single-end FASTQ-formatted reachs or one pair pf pair-end FASTQ-formatted reads.
 -  `fastq_2`: (Optional_ If `fastq_1` is paired-end, then this field is a URI to other pair of reads.
+
+## Optional
+- `--genome`: A URI to the reference genome to use during the pipeline analysis. Must be in FASTA-format.
+- `--outdir`: The directory for pipeline output (DEFAULT: "results")
 
 # Variant Calling Pipeline
 If you wanted to run the full variant calling pipeline [`full_main.nf`] then run:
