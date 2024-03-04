@@ -4,14 +4,16 @@ nextflow_process {
     script "modules/rnaseq_mapping_star.nf"
     process "rnaseq_mapping_star"
 
-    test("Should align fastq files to genome using STAR") {
+    test("Should run without failures") {
 
-        when {                
+        when {
+            params {
+                outdir = "results"
+            }                
             process {
                 """
-                input[0] = file("${projectDir}/tests/data/genome.fa")
-                input[1] = files("${projectDir}/tests/data/genomeDir")
-		        input[2] = Channel.fromFilePairs("${projectDir}/tests/data/ENCSR000COQ1_{1,2}.fastq.gz")
+                input[0] = files("${projectDir}/tests/data/genomeDir")
+		        input[1] = new Tuple(["id": "ENCSR000COQ1"], files("${projectDir}/tests/data/ENCSR000COQ1_{1,2}.fastq.gz"))
                 """
             }
         }

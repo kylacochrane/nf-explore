@@ -7,6 +7,9 @@ nextflow_process {
     test("Should create channel index files") {
 
         when {
+            params {
+                outdir = "results"
+            }
             process {
                 """
                 input[0] = file("${projectDir}/tests/data/genome.fa")
@@ -17,6 +20,8 @@ nextflow_process {
         then {
 	    //check if test case succeeded
             assert process.success
+
+            
         //analyze trace files
         assert process.trace.tasks().size() == 1
         }
