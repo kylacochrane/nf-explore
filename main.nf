@@ -12,12 +12,17 @@ nextflow.enable.dsl=2
 
 // Pipeline input parameters defined in nextflow.config
 
-include { validateParameters } from 'plugin/nf-validation'
+include { validateParameters; fromSamplesheet } from 'plugin/nf-validation'
 include { STAR } from './workflows/star'
 
 workflow {
     validateParameters()
-    STAR(file(params.genome), Channel.fromFilePairs(params.reads))
+
+    Channel.fromSamplesheet("input")
+           .map {meta, fastq_1, fastq_2 -> [meta, [fastq_1, fastq_2]]}
+           .set { read_ch }
+
+    STAR(file(params.genome), read_ch)
 }
 
 workflow.onComplete {

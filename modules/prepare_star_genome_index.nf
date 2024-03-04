@@ -4,13 +4,13 @@
 
 process prepare_star_genome_index {
     container 'quay.io/biocontainers/star:2.7.10b--h6b7c446_1'
-    publishDir "${params.results}" 
+    publishDir params.outdir, mode:'copy'
     
     input:
     path genome
 
     output:
-    path 'genomeDir' 
+    path 'genomeDir', emit: genomeDir 
 
     script: 
     """
