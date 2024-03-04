@@ -4,7 +4,7 @@ nextflow_process {
     script "modules/rnaseq_mapping_star.nf"
     process "rnaseq_mapping_star"
 
-    test("Should run without failures") {
+    test("Should generate BAM and BAM.BAI files for every input sample") {
 
         when {
             params {
@@ -19,29 +19,17 @@ nextflow_process {
         }
 
         then {
+
+            // Check if test case succeeded 
             assert process.success
 
-            // Get the directory containing test results
-            def testResultsDir = file('.nf-test/tests')
+            // Ensure BAM and BAM.BAI file was generated
 
-            //Flag variable to track if bam output file is found
-            def outputFileFound = false
-
-            //Iterate through each test directory
-            testResultsDir.eachDir { testDir ->
-                def outputFile = new File(testDir, "results/ENCSR000COQ1/Aligned.sortedByCoord.out.bam")          
+            assert file("${launchDir}/results/ENCSR000COQ1/Aligned.sortedByCoord.out.bam").exists()
+            assert file("${launchDir}/results/ENCSR000COQ1/Aligned.sortedByCoord.out.bam.bai").exists()
             
-                if (outputFile.exists()) {
-                   outputFileFound = true
-                }
-            }
-
-            //Print success message if output file is found in any working  test directory
-            if (outputFileFound) {
-                print "BAM file was created successfully"
-            } else {
-                print "BAM file was not created"
-            }
+            //analyze trace files
+            assert process.trace.tasks().size() == 1
         }
 
     }

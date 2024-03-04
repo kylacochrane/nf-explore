@@ -7,7 +7,7 @@ nextflow_pipeline {
 
         when {
             params {
-		genome	= "${projectDir}/tests/data/genome.fa"
+		genome	= "${projectDir}/tests/data/genome.fa.gz"
 		reads	= "${projectDir}/tests/data/ENCSR000COQ1_{1,2}.fastq.gz" 
                 results	= "results"
             }
