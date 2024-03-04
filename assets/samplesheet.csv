@@ -1,0 +1,4 @@
+sample,fastq_1,fastq_2
+ENCSR000COQ1,https://github.com/kylacochrane/nf-explore/raw/main/data/reads/ENCSR000COQ1_1.fastq.gz,https://github.com/kylacochrane/nf-explore/raw/main/data/reads/ENCSR000COQ1_2.fastq.gz
+ENCSR000COR1,https://github.com/kylacochrane/nf-explore/raw/main/data/reads/ENCSR000COR1_1.fastq.gz,https://github.com/kylacochrane/nf-explore/raw/main/data/reads/ENCSR000COR1_2.fastq.gz
+ENCSR000CPO1,https://github.com/kylacochrane/nf-explore/raw/main/data/reads/ENCSR000CPO1_1.fastq.gz,https://github.com/kylacochrane/nf-explore/raw/main/data/reads/ENCSR000CPO1_2.fastq.gz
