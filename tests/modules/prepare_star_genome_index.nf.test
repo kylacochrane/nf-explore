@@ -4,7 +4,7 @@ nextflow_process {
     script "modules/prepare_star_genome_index.nf"
     process "prepare_star_genome_index"
 
-    test("Should create channel index files") {
+    test("Should create a channel of genome index files") {
 
         when {
             params {
@@ -12,7 +12,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = file("${projectDir}/tests/data/genome.fa")
+                input[0] = file("${projectDir}/tests/data/genome.fa.gz")
                 """
             }
         }
@@ -20,10 +20,11 @@ nextflow_process {
         then {
 	    //check if test case succeeded
             assert process.success
+            assert file("${launchDir}/results/genomeDir/SAindex").exists()
+            assert path("${launchDir}/results/genomeDir/chrLength.txt").text.contains("51304566")
 
-            
         //analyze trace files
-        assert process.trace.tasks().size() == 1
+            assert process.trace.tasks().size() == 1
         }
     }
 }

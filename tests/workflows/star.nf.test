@@ -13,7 +13,7 @@ nextflow_workflow {
             workflow {
                 """
                 // define inputs of the workflow here
-                input[0] = file("$projectDir/tests/data/genome.fa")
+                input[0] = file("$projectDir/tests/data/genome.fa.gz")
                 input[1] = new Tuple(["id": "ENCSR000COQ1"], files("${projectDir}/tests/data/ENCSR000COQ1_{1,2}.fastq.gz"))
                 """
             }

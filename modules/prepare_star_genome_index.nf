@@ -14,9 +14,14 @@ process prepare_star_genome_index {
 
     script: 
     """
+    mkdir unzipped_genome
+    gunzip -c ${genome} > unzipped_genome/genome.fa
+
     STAR --runMode genomeGenerate \
          --genomeDir genomeDir \
-         --genomeFastaFiles ${genome} \
-         --runThreadN ${task.cpus}
+         --genomeFastaFiles unzipped_genome/genome.fa \
+         --runThreadN ${task.cpus} 
+    
+    rm -r unzipped_genome
     """
 }
