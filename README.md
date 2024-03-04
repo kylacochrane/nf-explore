@@ -15,7 +15,7 @@ Now, you can clone this repository:
 
 ```bash
 git clone https://github.com/kylacochrane/nf-explore.git
-ch nf-explore
+cd nf-explore
 ```
 
 # Running
