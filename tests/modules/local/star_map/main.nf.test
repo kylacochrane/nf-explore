@@ -1,8 +1,8 @@
 nextflow_process {
 
-    name "Test Process rnaseq_mapping_star"
-    script "modules/local/rnaseq_mapping_star.nf"
-    process "rnaseq_mapping_star"
+    name "Test Process STAR_MAP"
+    script "modules/local/star_map/main.nf"
+    process "STAR_MAP"
 
     test("Should generate BAM and BAM.BAI files for every input sample") {
 

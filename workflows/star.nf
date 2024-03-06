@@ -1,7 +1,9 @@
 // Import local modules
 
-include { prepare_star_genome_index	} from '../modules/local/prepare_star_genome_index'
-include { rnaseq_mapping_star		} from '../modules/local/rnaseq_mapping_star'
+include { STAR_INDEX	} from '../modules/local/star_index/main'
+include { FASTQC } from '../modules/nf-core/fastqc/main'
+include { STAR_MAP  } from '../modules/local/star_map/main'
+
 
 
 // Run main workflow
@@ -11,6 +13,7 @@ workflow STAR {
     genome
     reads
   main:
-    prepare_star_genome_index(genome)
-    rnaseq_mapping_star(prepare_star_genome_index.out, reads)
+    STAR_INDEX(genome)
+    FASTQC(reads)
+    STAR_MAP(STAR_INDEX.out, reads)
 }
