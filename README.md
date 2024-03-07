@@ -50,16 +50,6 @@ The columns are defined as follows:
 - `--genome`: A URI to the reference genome to use during the pipeline analysis. Must be in FASTA-format.
 - `--outdir`: The directory for pipeline output (DEFAULT: "results")
 
-# Variant Calling Pipeline
-
-If you wanted to run the full variant calling pipeline [`full_main.nf`] then run:
-
-```bash
-nextflow run full_main.nf -profile singularity
-```
-
-This pipeline does not have tests or nf-validation of parameters set up.
-
 # To run the tests:
 
 ```bash
